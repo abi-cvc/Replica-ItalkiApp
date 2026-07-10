@@ -3,6 +3,7 @@ package com.italkiclone.app.data.fake
 import com.italkiclone.app.data.model.ChatConversation
 import com.italkiclone.app.data.model.ClassSession
 import com.italkiclone.app.data.model.ClassStatus
+import com.italkiclone.app.data.model.LanguageCompetency
 import com.italkiclone.app.data.model.Student
 import com.italkiclone.app.data.model.StudentRelation
 import com.italkiclone.app.data.model.Teacher
@@ -117,6 +118,11 @@ object FakeDataGenerator {
         }
     }
 
+    private val profileTagPool = listOf(
+        "Adulto", "Adolescente", "Vivir en el extranjero", "Viaje de negocios",
+        "Preparación de examen", "Uso académico",
+    )
+
     fun generateStudents(count: Int = 40, seed: Int = 3): List<Student> {
         val random = Random(seed)
         val months = listOf(
@@ -124,16 +130,37 @@ object FakeDataGenerator {
         )
         return List(count) { index ->
             val (flag, _) = countries[random.nextInt(countries.size)]
-            Student(
-                id = "student_$index",
-                name = randomFullName(random),
-                countryFlagEmoji = flag,
-                languagesSpoken = languages.shuffled(random).take(random.nextInt(1, 4)),
-                lastClassLabel = "${random.nextInt(1, 28)} ${months[random.nextInt(months.size)]} " +
-                    "${2024 + random.nextInt(0, 3)}, ${random.nextInt(6, 21)}:${if (random.nextBoolean()) "00" else "30"}",
-                totalLessons = random.nextInt(1, 60),
-                relation = if (index < count * 6 / 10) StudentRelation.CURRENT else StudentRelation.POTENTIAL,
-            )
+            val name = randomFullName(random)
+            val relation = if (index < count * 6 / 10) StudentRelation.CURRENT else StudentRelation.POTENTIAL
+
+            if (relation == StudentRelation.CURRENT) {
+                Student(
+                    id = "student_$index",
+                    name = name,
+                    countryFlagEmoji = flag,
+                    relation = relation,
+                    languagesSpoken = languages.shuffled(random).take(random.nextInt(1, 4)),
+                    lastClassLabel = "${random.nextInt(1, 28)} ${months[random.nextInt(months.size)]} " +
+                        "${2024 + random.nextInt(0, 3)}, ${random.nextInt(6, 21)}:${if (random.nextBoolean()) "00" else "30"}",
+                    totalLessons = random.nextInt(1, 60),
+                )
+            } else {
+                val nativeLanguage = languages[random.nextInt(languages.size)]
+                val learningLanguage = languages.filter { it != nativeLanguage }.random(random)
+                Student(
+                    id = "student_$index",
+                    name = name,
+                    countryFlagEmoji = flag,
+                    relation = relation,
+                    possibleLearningLanguage = learningLanguage,
+                    possibleLanguageLevel = random.nextInt(1, 5),
+                    profileTags = profileTagPool.shuffled(random).take(random.nextInt(1, 3)),
+                    languageCompetencies = listOf(
+                        LanguageCompetency(nativeLanguage, isNative = true),
+                        LanguageCompetency(learningLanguage, isNative = false, proficiencyLevel = random.nextInt(1, 5)),
+                    ),
+                )
+            }
         }
     }
 

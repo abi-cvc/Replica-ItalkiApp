@@ -28,6 +28,9 @@ import com.italkiclone.app.data.model.Teacher
 import com.italkiclone.app.ui.components.Avatar
 import com.italkiclone.app.ui.components.RatingStars
 import com.italkiclone.app.ui.theme.ItalkiCoral
+import com.italkiclone.app.ui.theme.ItalkiGreenAccent
+import com.italkiclone.app.ui.theme.ItalkiMint
+import com.italkiclone.app.ui.theme.ItalkiTeal
 
 @Composable
 fun TeacherCard(teacher: Teacher, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
@@ -50,12 +53,13 @@ fun TeacherCard(teacher: Teacher, modifier: Modifier = Modifier, onClick: () -> 
             if (teacher.discountPercent != null) {
                 Text(
                     text = "${teacher.discountPercent} % de descuento",
-                    color = Color.White,
+                    color = ItalkiCoral,
+                    fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.labelMedium,
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
-                        .background(ItalkiCoral, RoundedCornerShape(6.dp))
+                        .background(Color.White, RoundedCornerShape(6.dp))
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                 )
             }
@@ -84,12 +88,31 @@ fun TeacherCard(teacher: Teacher, modifier: Modifier = Modifier, onClick: () -> 
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(start = 8.dp),
                     )
+                    if (teacher.isNew) {
+                        Text(
+                            text = "NEW",
+                            color = ItalkiGreenAccent,
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.labelSmall,
+                            modifier = Modifier
+                                .padding(start = 6.dp)
+                                .background(ItalkiMint, RoundedCornerShape(4.dp))
+                                .padding(horizontal = 6.dp, vertical = 2.dp),
+                        )
+                    }
                 }
-                Text(
-                    text = "${teacher.teachingLanguage} Nativo",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = ItalkiCoral,
-                )
+                Row {
+                    Text(
+                        text = "${teacher.teachingLanguage} ",
+                        style = MaterialTheme.typography.labelMedium,
+                    )
+                    Text(
+                        text = "Nativo",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = ItalkiTeal,
+                    )
+                }
             }
 
             Text(

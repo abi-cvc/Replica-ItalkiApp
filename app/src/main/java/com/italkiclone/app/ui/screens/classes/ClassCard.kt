@@ -20,19 +20,13 @@ import com.italkiclone.app.ui.components.StatusBadge
 
 @Composable
 fun ClassCard(session: ClassSession, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-    ) {
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 6.dp),
-            ) {
-                StatusBadge(status = session.status)
-            }
+    Column(modifier = modifier.fillMaxWidth()) {
+        StatusBadge(status = session.status)
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
