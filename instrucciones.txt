@@ -1,0 +1,46 @@
+T. Clase 08 - Imitar una App estilos
+Guía Detallada del Taller: "Native UI Re-Engineering & UX Analysis"
+A continuación, se detalla el taller para los estudiantes de la Facultad de Ingeniería de Sistemas.
+1. Objetivo del Taller
+Desarrollar la capacidad de replicar interfaces complejas utilizando tecnologías móviles modernas (Flutter, React Native, NativeScript, Kotlin Nativo, KMP), enfocándose en la eficiencia de listas (scrolling), fidelidad visual y análisis estratégico de producto.
+2. Requerimientos Técnicos
+Prohibido el uso de WebViews: Toda la interfaz debe ser renderizada mediante componentes nativos o el motor gráfico propio de la tecnología (ej. Skia en Flutter).
+Gestión de Listas: Se deben representar al menos 3 listas diferentes (ejemplo: Feed principal, lista de chats, lista de contactos, menú lateral, historial de transacciones).
+Performance: Las listas deben mantener un desplazamiento fluido (idealmente 60 FPS) incluso con datos simulados extensos.
+Estilos y Animaciones: Implementar micro-animaciones (transiciones de entrada, efectos al presionar botones, estados de carga).
+3. Fases del Proyecto
+Fase A: Selección y Análisis (Entregable 1)
+Reserva de App: Comentar en el post oficial la aplicación seleccionada. No se permiten duplicados.
+Definición de Mercado: ¿A quién está dirigida la app? (Edad, intereses, nivel socioeconómico).
+Psicología del Color:
+Identificar la paleta principal (Primarios, Secundarios, Backgrounds).
+Explicar por qué la marca usa esos colores según la teoría del color vista en clase.
+Auditoría de Componentes: Identificar los 3 tipos de iterables (listas) a clonar.
+Fase B: Desarrollo Técnico (Entregable 2)
+Estructura de Datos: Crear modelos de datos para poblar las listas.
+Implementación de Listas:
+Android Nativo: Uso de RecyclerView con DiffUtil.
+Flutter: Uso de ListView.builder o SliverList.
+React Native: Uso de FlatList o FlashList.
+KMP / Compose: Uso de LazyColumn.
+Estilización: Replicar fuentes, espaciados (paddings/margins) y bordes.
+Fase C: Crítica y Propuesta de Mejora (Entregable Final)
+Análisis Crítico: Encontrar una falla en la aplicación original (ej. navegación confusa, contraste de texto bajo, falta de retroalimentación visual).
+Propuesta: Implementar una mejora visual o funcional en tu clon que solucione dicho problema.
+4. Criterios de Evaluación
+Criterio	
+ 
+	Descripción
+Fidelidad Visual	 	
+¿Se ve idéntico al original?.
+
+Eficiencia de Listas	 	¿Hay lag en el scroll? ¿Se manejan bien los recursos de memoria?
+Análisis de Producto	 	Calidad del análisis de mercado y color.
+Propuesta de Mejora	 	Creatividad y sustento técnico de la mejora implementada.
+Código Limpio	 	Uso de buenas prácticas (SOLID, arquitectura de carpetas).
+5. Ejemplo de Aplicación del Análisis (Caso Spotify)
+Mercado: Jóvenes y adultos jóvenes (15-40 años), usuarios móviles intensivos que buscan personalización.
+Colores: Negro (#191414) para enfoque y ahorro de batería; Verde Neón (#1DB954) para destacar acción y modernidad.
+Propuesta de mejora común: La búsqueda a veces requiere demasiados taps; se podría sugerir una barra de búsqueda persistente o gestos de deslizamiento en las listas.
+Taller de Clonado de UI y Análisis de Producto (1).pdf
+ 
