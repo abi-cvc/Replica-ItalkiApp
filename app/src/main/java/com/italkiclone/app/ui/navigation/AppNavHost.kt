@@ -46,7 +46,13 @@ fun AppNavHost() {
             startDestination = Screen.Hoy.route,
             modifier = androidx.compose.ui.Modifier.padding(innerPadding),
         ) {
-            composable(Screen.Hoy.route) { HoyScreen(isTeacherMode = isTeacherMode) }
+            composable(Screen.Hoy.route) {
+                HoyScreen(
+                    isTeacherMode = isTeacherMode,
+                    onNavigateToClasses = { navController.navigate(Screen.Clases.route) },
+                    onNavigateToProfesores = { navController.navigate(Screen.Profesores.route) },
+                )
+            }
             composable(Screen.Profesores.route) { TeachersListScreen() }
             composable(Screen.Chats.route) { ChatsListScreen() }
             composable(Screen.Clases.route) { ClassesListScreen() }
